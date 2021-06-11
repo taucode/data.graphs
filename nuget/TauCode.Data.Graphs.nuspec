@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>TauCode.Data.Graphs</id>
+    <version>0.0.1-alpha-2021-06-11-17-54</version>
+    <authors>TauCode</authors>
+    <owners>TauCode</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <projectUrl>https://github.com/taucode/taucode.data.graphs</projectUrl>
+    <repository type="git" url="https://github.com/taucode/taucode.data.graphs" />
+    <description>Graph representation library.</description>
+    <releaseNotes>
+      Initial version.
+    </releaseNotes>
+    <tags>taucode todo</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\LICENSE.txt" target="" />
+    <file src="..\src\TauCode.Data.Graphs\bin\Release\netstandard2.1\TauCode.Data.Graphs.dll" target="lib\netstandard2.1" />
+    <file src="..\src\TauCode.Data.Graphs\bin\Release\netstandard2.1\TauCode.Data.Graphs.pdb" target="lib\netstandard2.1" />
+  </files>
+</package>
