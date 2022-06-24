@@ -1,2 +1,2 @@
 # taucode.data.graphs
-Graph representation library.
+Graph representation library
