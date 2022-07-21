@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace TauCode.Data.Graphs
 {
@@ -91,9 +92,7 @@ namespace TauCode.Data.Graphs
             {
                 throw new ArgumentNullException(nameof(otherGraphVertices));
             }
-
-            var idx = 0;
-
+            
             foreach (var otherGraphVertex in otherGraphVertices)
             {
                 if (otherGraphVertex == null)
@@ -103,20 +102,117 @@ namespace TauCode.Data.Graphs
 
                 if (graph.Contains(otherGraphVertex))
                 {
-                    // todo: 'index' is not applicable to ISet<T>.
-                    throw new ArgumentException($"Arc with index {idx} already belongs to '{nameof(graph)}'.");
+                    throw new ArgumentException($"Arc already belongs to '{nameof(graph)}'.");
                 }
 
                 var captured = otherGraph.Remove(otherGraphVertex);
                 if (!captured)
                 {
-                    throw new ArgumentException($"Arc with index {idx} does not belong to '{nameof(otherGraph)}'.");
+                    throw new ArgumentException($"Arc does not belong to '{nameof(otherGraph)}'.");
                 }
 
                 graph.Add(otherGraphVertex);
-
-                idx++;
             }
+        }
+
+        public static string PrintGraph(this IGraph graph)
+        {
+            if (graph == null)
+            {
+                throw new ArgumentNullException(nameof(graph));
+            }
+
+            var sb = new StringBuilder();
+
+            var vertexNames = graph
+                .Select(x => x.Name ?? "<null-name>")
+                .OrderBy(x => x)
+                .ToList();
+
+            for (var i = 0; i < vertexNames.Count; i++)
+            {
+                var vertexName = vertexNames[i];
+                sb.Append(vertexName);
+                if (i < vertexNames.Count - 1)
+                {
+                    sb.AppendLine();
+                }
+            }
+
+            var arcTexts = graph
+                .SelectMany(x =>
+                {
+                    var list = new List<IArc>();
+                    list.AddRange(x.OutgoingArcs);
+                    list.AddRange(x.IncomingArcs);
+
+                    return list;
+                })
+                .ToHashSet()
+                .Select(x => x.PrintArc())
+                .OrderBy(x => x)
+                .ToList();
+
+            if (arcTexts.Count > 0)
+            {
+                sb.AppendLine();
+
+                for (var i = 0; i < arcTexts.Count; i++)
+                {
+                    var arcText = arcTexts[i];
+                    sb.Append(arcText);
+
+                    if (i < arcTexts.Count - 1)
+                    {
+                        sb.AppendLine();
+                    }
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        public static string PrintArc(this IArc arc)
+        {
+            var sb = new StringBuilder();
+
+            if (arc.Tail != null)
+            {
+                sb.Append(arc.Tail.Name ?? "<null-name>");
+                sb.Append(" ");
+            }
+
+            sb.Append("-");
+            if (arc.Name != null)
+            {
+                sb.Append(arc.Name);
+            }
+
+            sb.Append("->");
+
+            if (arc.Head != null)
+            {
+                sb.Append(" ");
+                sb.Append(arc.Head.Name ?? "<null-name>");
+            }
+
+            return sb.ToString();
+        }
+
+        public static IArc DrawArcTo(this IVertex tail, IVertex head)
+        {
+            var arc = new Arc();
+            arc.Connect(tail, head);
+
+            return arc;
+        }
+
+        public static IArc DrawArcFrom(this IVertex head, IVertex tail)
+        {
+            var arc = new Arc();
+            arc.Connect(tail, head);
+
+            return arc;
         }
     }
 }

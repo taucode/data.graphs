@@ -20,6 +20,12 @@ namespace TauCode.Data.Graphs
 
         void Connect(IVertex tail, IVertex head);
 
+        void AttachTail(IVertex tail);
+        bool DetachTail();
+
+        void AttachHead(IVertex head);
+        bool DetachHead();
+
         void Disconnect();
     }
 }
