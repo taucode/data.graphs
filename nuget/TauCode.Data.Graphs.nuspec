@@ -2,24 +2,24 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>TauCode.Data.Graphs</id>
-    <version>1.3.7-alpha.1.2022-06-24.20-48</version>
+    <version>1.3.7-alpha.1.2022-07-21.10-49</version>
     <authors>TauCode</authors>
     <owners>TauCode</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="file">LICENSE.txt</license>
+    <license type="file">LICENSE</license>
     <projectUrl>https://github.com/taucode/taucode.data.graphs</projectUrl>
     <repository type="git" url="https://github.com/taucode/taucode.data.graphs" />
-    <description>Graph representation library</description>
+    <description>TauCode graph representation library</description>
     <releaseNotes>
       Initial version.
     </releaseNotes>
-    <tags>taucode data graphs</tags>
+    <tags>taucode data graphs graph arc edge</tags>
     <dependencies>
       <group targetFramework=".NETStandard2.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\LICENSE.txt" target="" />
+    <file src="..\LICENSE*" target="" />
     <file src="..\src\TauCode.Data.Graphs\bin\Release\netstandard2.1\TauCode.Data.Graphs.dll" target="lib\netstandard2.1" />
     <file src="..\src\TauCode.Data.Graphs\bin\Release\netstandard2.1\TauCode.Data.Graphs.pdb" target="lib\netstandard2.1" />
   </files>

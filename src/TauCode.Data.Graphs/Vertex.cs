@@ -36,9 +36,19 @@ namespace TauCode.Data.Graphs
             _outgoingArcs.AddArc(arc);
         }
 
+        internal void RemoveOutgoingArc(Arc arc)
+        {
+            _outgoingArcs.RemoveArc(arc);
+        }
+
         internal void AddIncomingArc(Arc arc)
         {
             _incomingArcs.AddArc(arc);
+        }
+
+        internal void RemoveIncomingArc(Arc arc)
+        {
+            _incomingArcs.RemoveArc(arc);
         }
 
         #endregion

@@ -49,12 +49,12 @@ namespace TauCode.Data.Graphs
 
             if (!(tail is Vertex tailImpl))
             {
-                throw new ArgumentException($"'{nameof(tail)}' is not an instance of '{typeof(Vertex).FullName}'.", nameof(tail));
+                throw GraphHelper.CreateUnexpectedTypeException(nameof(tail), tail.GetType(), typeof(Vertex));
             }
 
             if (!(head is Vertex headImpl))
             {
-                throw new ArgumentException($"'{nameof(head)}' is not an instance of '{typeof(Vertex).FullName}'.", nameof(head));
+                throw GraphHelper.CreateUnexpectedTypeException(nameof(head), tail.GetType(), typeof(Vertex));
             }
 
             tailImpl.AddOutgoingArc(this);
@@ -64,9 +64,94 @@ namespace TauCode.Data.Graphs
             this.Head = head;
         }
 
+        public void AttachTail(IVertex tail)
+        {
+            if (tail == null)
+            {
+                throw new ArgumentNullException(nameof(tail));
+            }
+
+            if (this.Tail != null)
+            {
+                throw new InvalidOperationException("Arc already has attached tail.");
+            }
+
+            if (!(tail is Vertex tailImpl))
+            {
+                throw GraphHelper.CreateUnexpectedTypeException(nameof(tail), tail.GetType(), typeof(Vertex));
+            }
+
+            tailImpl.AddOutgoingArc(this);
+            this.Tail = tail;
+        }
+
+        public bool DetachTail()
+        {
+            if (this.Tail != null)
+            {
+                if (!(this.Tail is Vertex tailVertex))
+                {
+                    throw GraphHelper.CreateUnexpectedTypeException(
+                        nameof(Tail),
+                        this.Tail.GetType(),
+                        typeof(Vertex));
+                }
+
+                tailVertex.RemoveOutgoingArc(this);
+                this.Tail = null;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public void AttachHead(IVertex head)
+        {
+            if (head == null)
+            {
+                throw new ArgumentNullException(nameof(head));
+            }
+
+            if (this.Head != null)
+            {
+                throw new InvalidOperationException("Arc already has attached head.");
+            }
+
+            if (!(head is Vertex headImpl))
+            {
+                throw GraphHelper.CreateUnexpectedTypeException(nameof(head), head.GetType(), typeof(Vertex));
+            }
+
+            headImpl.AddOutgoingArc(this);
+            this.Head = head;
+        }
+
+        public bool DetachHead()
+        {
+            if (this.Head != null)
+            {
+                if (!(this.Head is Vertex headVertex))
+                {
+                    throw GraphHelper.CreateUnexpectedTypeException(
+                        nameof(Head),
+                        this.Head.GetType(),
+                        typeof(Vertex));
+                }
+
+                headVertex.RemoveIncomingArc(this);
+                this.Head = null;
+
+                return true;
+            }
+
+            return false;
+        }
+
         public void Disconnect()
         {
-            throw new NotImplementedException();
+            this.DetachHead();
+            this.DetachTail();
         }
 
         #endregion

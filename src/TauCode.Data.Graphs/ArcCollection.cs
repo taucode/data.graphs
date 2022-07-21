@@ -33,7 +33,7 @@ namespace TauCode.Data.Graphs
 
         internal void RemoveArc(IArc arc)
         {
-            throw new NotImplementedException();
+            _arcs.Remove(arc);
         }
 
         #endregion
