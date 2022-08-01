@@ -2,6 +2,6 @@
 {
     public interface IVertex<T> : IVertex
     {
-        T Data{ get; set; }
+        T? Data { get; set; }
     }
 }

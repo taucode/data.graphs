@@ -1,7 +1,5 @@
 ﻿using Moq;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
 namespace TauCode.Data.Graphs.Tests;
 
@@ -167,10 +165,10 @@ a -->
         IArc arc = new Arc();
 
         // Act
-        var ex = Assert.Throws<ArgumentNullException>(() => arc.AttachTail(null));
+        var ex = Assert.Throws<ArgumentNullException>(() => arc.AttachTail(null!));
 
         // Assert
-        Assert.That(ex.ParamName, Is.EqualTo("tail"));
+        Assert.That(ex!.ParamName, Is.EqualTo("tail"));
     }
 
     [Test]
@@ -257,7 +255,7 @@ a
         IArc arc = new Arc();
 
         // Act
-        var ex = Assert.Throws<ArgumentNullException>(() => arc.AttachHead(null));
+        var ex = Assert.Throws<ArgumentNullException>(() => arc.AttachHead(null!));
 
         // Assert
         Assert.That(ex.ParamName, Is.EqualTo("head"));

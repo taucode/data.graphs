@@ -8,7 +8,7 @@
         {
         }
 
-        public Arc(string name)
+        public Arc(string? name)
             : base(name)
         {
         }
@@ -23,7 +23,7 @@
 
         #region IArc<T> Members
 
-        public T Data { get; set; }
+        public T? Data { get; set; }
 
         #endregion
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace TauCode.Data.Graphs
 {
@@ -27,6 +24,11 @@ namespace TauCode.Data.Graphs
             foreach (var outgoingArc in vertex.OutgoingArcs)
             {
                 var head = outgoingArc.Head;
+
+                if (head == null)
+                {
+                    continue;
+                }
 
                 if (graph.Contains(head))
                 {
@@ -55,6 +57,11 @@ namespace TauCode.Data.Graphs
             foreach (var incomingArc in vertex.IncomingArcs)
             {
                 var tail = incomingArc.Tail;
+
+                if (tail == null)
+                {
+                    continue;
+                }
 
                 if (graph.Contains(tail))
                 {
@@ -92,7 +99,7 @@ namespace TauCode.Data.Graphs
             {
                 throw new ArgumentNullException(nameof(otherGraphVertices));
             }
-            
+
             foreach (var otherGraphVertex in otherGraphVertices)
             {
                 if (otherGraphVertex == null)

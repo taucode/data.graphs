@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace TauCode.Data.Graphs
 {
@@ -13,7 +11,7 @@ namespace TauCode.Data.Graphs
         {
         }
 
-        public Arc(string name)
+        public Arc(string? name)
         {
             this.Name = name;
         }
@@ -22,13 +20,13 @@ namespace TauCode.Data.Graphs
 
         #region IArc Members
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public IDictionary<string, object> Properties { get; set; }
+        public IDictionary<string, object>? Properties { get; set; }
 
-        public IVertex Tail { get; internal set; }
+        public IVertex? Tail { get; internal set; }
 
-        public IVertex Head { get; internal set; }
+        public IVertex? Head { get; internal set; }
 
         public void Connect(IVertex tail, IVertex head)
         {

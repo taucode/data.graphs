@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TauCode.Data.Graphs
+﻿namespace TauCode.Data.Graphs
 {
     internal static class GraphHelper
     {
