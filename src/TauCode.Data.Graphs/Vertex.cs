@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace TauCode.Data.Graphs
 {
@@ -55,9 +54,9 @@ namespace TauCode.Data.Graphs
 
         #region IVertex Members
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public IDictionary<string, object> Properties { get; set; }
+        public IDictionary<string, object>? Properties { get; set; }
 
         public IReadOnlyCollection<IArc> OutgoingArcs => _outgoingArcs;
 

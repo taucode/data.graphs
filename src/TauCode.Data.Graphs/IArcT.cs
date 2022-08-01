@@ -2,6 +2,6 @@
 {
     public interface IArc<T> : IArc
     {
-        T Data { get; set; }
+        T? Data { get; set; }
     }
 }
